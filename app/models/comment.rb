@@ -13,4 +13,6 @@
 #  index_comments_on_article_id  (article_id)
 #
 class Comment < ApplicationRecord
+  belongs_to :article
+  validates :content, presence: true
 end
