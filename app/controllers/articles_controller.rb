@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def new
@@ -21,9 +21,9 @@ class ArticlesController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
-   
+
   end
 
   def update
