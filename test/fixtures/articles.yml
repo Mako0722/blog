@@ -7,6 +7,11 @@
 #  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
+#
+# Indexes
+#
+#  index_articles_on_user_id  (user_id)
 #
 
 # This model initially had no columns defined. If you add columns to the
