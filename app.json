@@ -3,7 +3,7 @@
   "description": "This is blog",
   "keywords": [],
   "website": "",
-  "repository": "https://github.com/cohki0305/blog",
+  "repository": "https://github.com/Mako0722/blog",
   "env": {},
   "addons": [
     "heroku-postgresql:hobby-dev"
