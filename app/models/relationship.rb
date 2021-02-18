@@ -19,6 +19,7 @@
 #  fk_rails_...  (following_id => users.id)
 #
 class Relationship < ApplicationRecord
+  
   belongs_to :follower, class_name: 'User'
   belongs_to :following, class_name: 'User'
 end
