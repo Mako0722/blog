@@ -46,7 +46,7 @@ class User < ApplicationRecord
     likes.exists?(article_id: article.id)
   end
 
-   def follow!(user)
+  def follow!(user)
     user_id = get_user_id(user)
 
     following_relationships.create!(following_id: user_id)
