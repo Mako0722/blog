@@ -1,16 +1,18 @@
 <?php
 
-$name = filter_input(INPUT_POST,'name');
+$name = filter_input(INPUT_POST, 'name');
 $email = filter_input(INPUT_POST, 'email');
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
+$dbUserName = 'root';
+$dbPassword = 'password';
+$pdo = new PDO(
+    'mysql:host=mysql; dbname=blog_app; charset=utf8mb4',
+    $dbUserName,
+    $dbPassword
+);
 
-$dbUserName = "root";
-$dbPassword = "password";
-$pdo = new PDO("mysql:host=mysql; dbname=blog_app; charset=utf8mb4", $dbUserName, $dbPassword);
-
-
-$sql = "SELECT * FROM  users WHERE email = :email";
+$sql = 'SELECT * FROM  users WHERE email = :email';
 $statement = $pdo->prepare($sql);
 $statement->bindValue(':email', $email, PDO::PARAM_STR);
 $statement->execute();
@@ -27,7 +29,8 @@ if ($member['email'] === $email) {
     // $statement->bindValue(':mail', $mail);
     // $statement->bindValue(':password', $password);
     // $statement->execute();
-    $sql = "INSERT INTO users(id, name, email, password) VALUES (0, :name, :email, :password)";
+    $sql =
+        'INSERT INTO users(id, name, email, password) VALUES (0, :name, :email, :password)';
     $statement = $pdo->prepare($sql);
     $statement->bindValue(':name', $name, PDO::PARAM_STR);
     $statement->bindValue(':email', $email, PDO::PARAM_STR);

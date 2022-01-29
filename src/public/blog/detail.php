@@ -4,9 +4,13 @@ $user_id = $_SESSION['user_id'];
 
 $id = filter_input(INPUT_GET, 'id');
 
-$dbUserName = "root";
-$dbPassword = "password";
-$pdo = new PDO("mysql:host=mysql; dbname=blog_app; charset=utf8mb4", $dbUserName, $dbPassword);
+$dbUserName = 'root';
+$dbPassword = 'password';
+$pdo = new PDO(
+    'mysql:host=mysql; dbname=blog_app; charset=utf8mb4',
+    $dbUserName,
+    $dbPassword
+);
 
 $sql = 'SELECT * FROM blogs WHERE id = :id';
 $statement = $pdo->prepare($sql);
@@ -14,22 +18,31 @@ $statement->bindValue(':id', $id, PDO::PARAM_INT);
 $statement->execute();
 $blog = $statement->fetch(PDO::FETCH_ASSOC);
 
-
-$sql = "SELECT * FROM comments";
-$sortMode = "";
-if (!empty($_GET['order'])) $sortMode = filter_input(INPUT_GET, 'order', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-if ($sortMode == "asc" || $sortMode == "desc") $sql = $sql . " order by created_at $sortMode";
-
+$sql = 'SELECT * FROM comments';
+$sortMode = '';
+if (!empty($_GET['order'])) {
+    $sortMode = filter_input(
+        INPUT_GET,
+        'order',
+        FILTER_SANITIZE_FULL_SPECIAL_CHARS
+    );
+}
+if ($sortMode == 'asc' || $sortMode == 'desc') {
+    $sql = $sql . " order by created_at $sortMode";
+}
 
 $statement = $pdo->prepare($sql);
 $statement->execute();
 $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 $my_comments = [];
 foreach ($comments as $comment) {
-    if ($comment['blog_id'] == $blog['id'])
+    if ($comment['blog_id'] == $blog['id']) {
         $my_comments[] = $comment;
+    }
 }
-if (empty($commenter_name) || empty($comments)) $errors[] = "「コメント名」「コメント」の記入されていません！";
+if (empty($commenter_name) || empty($comments)) {
+    $errors[] = '「コメント名」「コメント」の記入されていません！';
+}
 ?>
 
 
@@ -60,7 +73,9 @@ if (empty($commenter_name) || empty($comments)) $errors[] = "「コメント名�
                         <input type="text" id="commenter_name" name="commenter_name" class="form-control" placeholder="コメント名">
                     </p>
                 </div>
-                <input type="hidden" name="id" value='<?php print($blog['id']) ?>'>
+                <input type="hidden" name="id" value='<?php print $blog[
+                    'id'
+                ]; ?>'>
                 <div class="form-group">
                     <p>
                         <labe>コメント内容</labe><br>
@@ -73,10 +88,11 @@ if (empty($commenter_name) || empty($comments)) $errors[] = "「コメント名�
         </th>
     </div>
     <div>
-        <a href="./detail.php?id=<?php echo $id ?? '' ?>&order=desc">新しい順</a>
-        <a href="./detail.php?id=<?php echo $id ?? '' ?>&order=asc">古い順</a>
+        <a href="./detail.php?id=<?php echo $id ??
+            ''; ?>&order=desc">新しい順</a>
+        <a href="./detail.php?id=<?php echo $id ?? ''; ?>&order=asc">古い順</a>
     </div>
-    <?php foreach ($my_comments as $my_comment) : ?>
+    <?php foreach ($my_comments as $my_comment): ?>
         <div class="row justify-content-center">
             <table class="table">
                 <tr>
