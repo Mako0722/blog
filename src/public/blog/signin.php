@@ -13,10 +13,10 @@
         <h2>ログイン</h2>
         <form action="signin_complete.php" method="post">
             <p><input type=“text” name="email" type="email" required placeholder="Email" value="<?php if (
-                                                                                                    isset($_SESSION['email'])
-                                                                                                ) {
-                                                                                                    echo $_SESSION['email'];
-                                                                                                } ?>"></p>
+                isset($_SESSION['email'])
+            ) {
+                echo $_SESSION['email'];
+            } ?>"></p>
 
             <p><input type="password" placeholder="Password" name="password"></p>
             <button type="submit">ログイン</button>
