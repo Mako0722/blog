@@ -20,7 +20,7 @@ if (isset($_SESSION['user_id'])) {
 $dbUserName = 'root';
 $dbPassword = 'password';
 $pdo = new PDO(
-    'mysql:host=mysql; dbname=blog_app; charset=utf8mb4',
+    'mysql:host=mysql; dbname=blog; charset=utf8mb4',
     $dbUserName,
     $dbPassword
 );

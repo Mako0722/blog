@@ -6,7 +6,7 @@ $password = filter_input(INPUT_POST, 'password');
 $dbUserName = 'root';
 $dbPassword = 'password';
 $pdo = new PDO(
-    'mysql:host=mysql; dbname=blog_app; charset=utf8mb4',
+    'mysql:host=mysql; dbname=blog; charset=utf8mb4',
     $dbUserName,
     $dbPassword
 );
