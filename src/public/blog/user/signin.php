@@ -1,9 +1,9 @@
 <?php
 session_start();
-$registed = $_SESSION['registed'] ?? "";
+$registed = $_SESSION['registed'] ?? '';
 $error = $_SESSION['errors'] ?? '';
 
-$_SESSION['registed'] = "";
+$_SESSION['registed'] = '';
 unset($_SESSION['errors']);
 ?>
 
@@ -23,9 +23,13 @@ unset($_SESSION['errors']);
         <div class="w-60 m-auto text-center">
             <h2 class="text-2xl mb-5">ログイン</h2>
             <h3 class="mb-5 text-xl"><?php echo $registed; ?></h3>
-            <p class="text-red-600"><?php echo $error ?></p>
+            <p class="text-red-600"><?php echo $error; ?></p>
             <form class="px-4" action="./signin_complete.php" method="POST">
-                <p><input class="border-2 border-gray-300 mb-5 w-full" type=“text” name="mail" type="mail" required placeholder="Email" value="<?php if (isset($_SESSION['mail'])) echo $_SESSION['mail']; ?>"></p>
+                <p><input class="border-2 border-gray-300 mb-5 w-full" type=“text” name="mail" type="mail" required placeholder="Email" value="<?php if (
+                    isset($_SESSION['mail'])
+                ) {
+                    echo $_SESSION['mail'];
+                } ?>"></p>
 
                 <p><input class="border-2 border-gray-300 mb-5 w-full" type="password" placeholder="Password" name="password"></p>
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mb-5 w-full" type="submit">ログイン</button>

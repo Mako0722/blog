@@ -20,6 +20,6 @@ $statement->bindValue(':title', $title, PDO::PARAM_STR);
 $statement->bindValue(':contents', $contents, PDO::PARAM_STR);
 $statement->execute();
 
-header('Location:detail.php');
+header('Location:./detail.php');
 
 ?>

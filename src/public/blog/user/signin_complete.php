@@ -4,9 +4,9 @@ $password = filter_input(INPUT_POST, 'password');
 
 session_start();
 if (empty($mail) || empty($password)) {
-    $_SESSION['errors'] = "パスワードとメールアドレスを入力してください";
-    header("Location: ./signin.php");
-    exit;
+    $_SESSION['errors'] = 'パスワードとメールアドレスを入力してください';
+    header('Location: ./signin.php');
+    exit();
 }
 
 $dbUserName = 'root';
@@ -22,18 +22,17 @@ $statement = $pdo->prepare($sql);
 $statement->bindValue(':mail', $mail, PDO::PARAM_STR);
 $statement->execute();
 $member = $statement->fetch(PDO::FETCH_ASSOC);
-$shouldPasswordCheck = (!$member) ? false : true;
+$shouldPasswordCheck = !$member ? false : true;
 
-
-if (!password_verify($password, $member["password"])) {
-    $_SESSION['errors'] = "メールアドレスまたはパスワードが違います";
-    header("Location: ./signin.php");
-    exit;
+if (!password_verify($password, $member['password'])) {
+    $_SESSION['errors'] = 'メールアドレスまたはパスワードが違います';
+    header('Location: ./signin.php');
+    exit();
 }
 
-$_SESSION['id'] = $member['id'];
+$_SESSION['user_id'] = $member['id'];
 $_SESSION['user_name'] = $member['user_name'];
-header("Location: ./index.php");
-exit;
+header('Location: ../index.php');
+exit();
 
 ?>
