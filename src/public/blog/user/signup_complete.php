@@ -2,7 +2,7 @@
 session_start();
 // $email = filter_input(INPUT_POST, 'email');
 // $password = filter_input(INPUT_POST, 'password');
-$_SESSION['mail'] = filter_input(INPUT_POST, 'mail');
+$_SESSION['email'] = filter_input(INPUT_POST, 'email');
 $_SESSION['userName'] = filter_input(INPUT_POST, 'userName');
 
 $dbUserName = 'root';
@@ -13,7 +13,7 @@ $pdo = new PDO(
     $dbPassword
 );
 
-$mail = filter_input(INPUT_POST, 'mail');
+$mail = filter_input(INPUT_POST, 'email');
 $userName = filter_input(INPUT_POST, 'userName');
 $password = filter_input(INPUT_POST, 'password');
 $confirmPassword = filter_input(INPUT_POST, 'confirmPassword');
@@ -31,9 +31,9 @@ if (!empty($_SESSION['errors'])) {
 
 // require_once('../utils/pdo.php');
 
-$sql = 'SELECT * FROM users WHERE mail = :mail';
+$sql = 'SELECT * FROM users WHERE email = :email';
 $statement = $pdo->prepare($sql);
-$statement->bindValue(':mail', $mail, PDO::PARAM_STR);
+$statement->bindValue(':email', $email, PDO::PARAM_STR);
 $statement->execute();
 
 $result = $statement->fetch();
@@ -51,10 +51,10 @@ if (!empty($_SESSION['errors'])) {
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 $sql =
-    'INSERT INTO users(id, user_name, mail, password) VALUES (0, :userName, :mail, :password)';
+    'INSERT INTO users(id, name, email, password) VALUES (0, :name, :email, :password)';
 $statement = $pdo->prepare($sql);
-$statement->bindValue(':userName', $userName, PDO::PARAM_STR);
-$statement->bindValue(':mail', $mail, PDO::PARAM_STR);
+$statement->bindValue(':name', $name, PDO::PARAM_STR);
+$statement->bindValue(':email', $email, PDO::PARAM_STR);
 $statement->bindValue(':password', $hashedPassword, PDO::PARAM_STR);
 $statement->execute();
 

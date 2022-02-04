@@ -25,10 +25,10 @@ unset($_SESSION['errors']);
             <h3 class="mb-5 text-xl"><?php echo $registed; ?></h3>
             <p class="text-red-600"><?php echo $error; ?></p>
             <form class="px-4" action="./signin_complete.php" method="POST">
-                <p><input class="border-2 border-gray-300 mb-5 w-full" type=“text” name="mail" type="mail" required placeholder="Email" value="<?php if (
-                    isset($_SESSION['mail'])
+                <p><input class="border-2 border-gray-300 mb-5 w-full" type=“text” name="email" type="email" required placeholder="Email" value="<?php if (
+                    isset($_SESSION['email'])
                 ) {
-                    echo $_SESSION['mail'];
+                    echo $_SESSION['email'];
                 } ?>"></p>
 
                 <p><input class="border-2 border-gray-300 mb-5 w-full" type="password" placeholder="Password" name="password"></p>

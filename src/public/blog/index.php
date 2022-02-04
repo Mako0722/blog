@@ -2,7 +2,6 @@
 session_start();
 $username = $_SESSION['user_name'];
 
-
 if (!isset($_SESSION['user_id'])) {
     header('Location: ./user/signin.php');
     exit();
@@ -30,7 +29,6 @@ $sql = 'SELECT * FROM blogs';
 $statement = $pdo->prepare($sql);
 $statement->execute();
 $blogs = $statement->fetchAll(PDO::FETCH_ASSOC);
-
 
 if (!empty($_GET['searchWord'])) {
     $escapedKeyword = '';
