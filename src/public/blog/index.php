@@ -2,6 +2,8 @@
 session_start();
 $username = $_SESSION['user_name'];
 
+
+
 if (!isset($_SESSION['user_id'])) {
     header('Location: ./user/signin.php');
     exit();

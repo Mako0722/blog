@@ -25,6 +25,7 @@ $pdo = new PDO(
     $dbPassword
 );
 
+
 $sql = 'SELECT * FROM blogs';
 $statement = $pdo->prepare($sql);
 $statement->execute();
@@ -51,7 +52,7 @@ foreach ($blogs as $blog) {
     <div>
         <h2>マイページ</h2>
     </div>
-
+    <a href="index.php">一覧ページへ</a><br>
 
     <a href="create_form.php">新規作成</a>
 
@@ -62,9 +63,7 @@ foreach ($blogs as $blog) {
           <th><?php echo $my_blog['title']; ?></th>
           <th><?php echo $my_blog['contents']; ?></th>
           <th><?php echo $my_blog['created_at']; ?></th>
-          <th><a href="myarticledetail.php?id=<?php echo $my_blog[
-              'user_id'
-          ]; ?>">記事詳細へ</a></th>
+          <th><a href="myarticledetail.php?id=<?php echo $my_blog['id']; ?>">記事詳細へ</a></th>
         </tr>
       </table>
     </div>

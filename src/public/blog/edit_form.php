@@ -3,6 +3,7 @@
 session_start();
 $user_id = $_SESSION['user_id'];
 
+
 $dbUserName = 'root';
 $dbPassword = 'password';
 $pdo = new PDO(
@@ -34,9 +35,7 @@ $blog = $statement->fetch(PDO::FETCH_ASSOC);
 <body>
     <div class="row justify-content-center">
         <form action="edit.php" method="post">
-            <input type="hidden" name="user_id" value=<?php echo $blog[
-                'user_id'
-            ]; ?>>
+            <input type="hidden" name="id" value=<?php echo $blog['id']; ?>>
             <div class="form-group">
                 <label>編集</label>
             </div>
