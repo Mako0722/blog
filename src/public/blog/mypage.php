@@ -62,7 +62,9 @@ foreach ($blogs as $blog) {
           <th><?php echo $my_blog['title']; ?></th>
           <th><?php echo $my_blog['contents']; ?></th>
           <th><?php echo $my_blog['created_at']; ?></th>
-          <th><a href="myarticledetail.php?id=<?php echo $my_blog['id']; ?>">記事詳細へ</a></th>
+          <th><a href="myarticledetail.php?id=<?php echo $my_blog[
+              'id'
+          ]; ?>">記事詳細へ</a></th>
         </tr>
       </table>
     </div>

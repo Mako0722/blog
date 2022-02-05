@@ -5,7 +5,6 @@ $user_id = $_SESSION['user_id'];
 
 $id = filter_input(INPUT_GET, 'id');
 
-
 $dbUserName = 'root';
 $dbPassword = 'password';
 $pdo = new PDO(
@@ -19,7 +18,6 @@ $statement = $pdo->prepare($sql);
 $statement->bindValue(':id', $id, PDO::PARAM_INT);
 $statement->execute();
 $blog = $statement->fetch(PDO::FETCH_ASSOC);
-
 ?>
 
 
