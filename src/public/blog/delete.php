@@ -4,7 +4,6 @@ session_start();
 $user_id = $_SESSION['user_id'];
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-
 $dbUserName = 'root';
 $dbPassword = 'password';
 $pdo = new PDO(

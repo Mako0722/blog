@@ -1,7 +1,8 @@
 <?php
 
 session_start();
-$user_id = $_SESSION['user_id'];
+$id = filter_input(INPUT_GET, 'id');
+
 
 
 $dbUserName = 'root';
@@ -12,12 +13,12 @@ $pdo = new PDO(
     $dbPassword
 );
 
-
-$sql = 'SELECT * FROM blogs WHERE user_id = :user_id';
+$sql = 'SELECT * FROM blogs WHERE id = :id';
 $statement = $pdo->prepare($sql);
-$statement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+$statement->bindValue(':id', $id, PDO::PARAM_INT);
 $statement->execute();
 $blog = $statement->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 

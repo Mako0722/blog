@@ -25,7 +25,6 @@ $pdo = new PDO(
     $dbPassword
 );
 
-
 $sql = 'SELECT * FROM blogs';
 $statement = $pdo->prepare($sql);
 $statement->execute();

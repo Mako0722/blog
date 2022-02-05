@@ -2,7 +2,6 @@
 session_start();
 $registed = $_SESSION['registed'] ?? '';
 $error = $_SESSION['errors'] ?? '';
-
 $_SESSION['registed'] = '';
 unset($_SESSION['errors']);
 ?>
