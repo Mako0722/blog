@@ -14,4 +14,9 @@ if [ -z "$(ls $directory)" ]; then
     $PWD/yarn.sh install
 fi
 
+# Install Vendor
+if [ ! -d "$PWD/src/vendor" ]; then
+    $PWD/composer.sh --ignore-platform-reqs install
+fi
+
 docker-compose -p tq-docker-template -f $PWD/.local/docker-compose-local/docker-compose.yml $@
