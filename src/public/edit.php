@@ -1,6 +1,6 @@
 <?php
 
-$user_id = filter_input(INPUT_POST, 'user_id');
+$id = filter_input(INPUT_POST, 'id');
 $title = filter_input(INPUT_POST, 'title');
 $contents = filter_input(INPUT_POST, 'contents');
 
@@ -13,13 +13,13 @@ $pdo = new PDO(
 );
 
 $statement = $pdo->prepare(
-    'UPDATE blogs SET title = :title, contents = :contents WHERE user_id = :user_id'
+    'UPDATE blogs SET title = :title, contents = :contents WHERE id = :id'
 );
-$statement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+$statement->bindValue(':id', $id, PDO::PARAM_INT);
 $statement->bindValue(':title', $title, PDO::PARAM_STR);
 $statement->bindValue(':contents', $contents, PDO::PARAM_STR);
 $statement->execute();
 
-header('Location:detail.php');
+header('Location:./mypage.php');
 
 ?>

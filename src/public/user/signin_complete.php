@@ -1,7 +1,13 @@
 <?php
-session_start();
 $email = filter_input(INPUT_POST, 'email');
 $password = filter_input(INPUT_POST, 'password');
+
+session_start();
+if (empty($email) || empty($password)) {
+    $_SESSION['errors'] = 'パスワードとメールアドレスを入力してください';
+    header('Location: ./signin.php');
+    exit();
+}
 
 $dbUserName = 'root';
 $dbPassword = 'password';
@@ -18,13 +24,17 @@ $statement->execute();
 $member = $statement->fetch(PDO::FETCH_ASSOC);
 $shouldPasswordCheck = !$member ? false : true;
 
+
+
 if (!password_verify($password, $member['password'])) {
-    $_SESSION['errors'] = 'メールアドレスまたは<br />パスワードが違います';
+    $_SESSION['errors'] = 'メールアドレスまたはパスワードが違います';
     header('Location: ./signin.php');
     exit();
 }
 
 $_SESSION['user_id'] = $member['id'];
 $_SESSION['user_name'] = $member['name'];
-header('Location: index.php');
+header('Location: ../index.php');
 exit();
+
+?>
