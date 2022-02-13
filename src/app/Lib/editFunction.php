@@ -1,8 +1,5 @@
 <?php
 require_once( __DIR__ . '/../Lib/pdoInit.php');
-
-
-
 function editModify($id, $title, $contents)
 {
     $pdo = pdoInit();
