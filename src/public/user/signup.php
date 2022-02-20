@@ -3,9 +3,9 @@
 // $errors = $_SESSION['errors'] ?? [];
 // unset($_SESSION['errors']);
 
-require_once(__DIR__ . '/../../app/Lib/session.php');
+require_once __DIR__ . '/../../app/Lib/session.php';
 session_start();
-$errors =errorsInit();
+$errors = errorsInit();
 $userName = $_SESSION['formInputs']['userName'] ?? '';
 $email = $_SESSION['formInputs']['mail'] ?? '';
 ?>
@@ -28,8 +28,8 @@ $email = $_SESSION['formInputs']['mail'] ?? '';
     <div class="w-60 m-auto text-center">
       <h2 class="text-2xl pb-5">会員登録</h2>
 
-      <?php foreach ($errors as $error) : ?>
-        <p class="text-red-600"><?php echo $error ?></p>
+      <?php foreach ($errors as $error): ?>
+        <p class="text-red-600"><?php echo $error; ?></p>
       <?php endforeach; ?>
 
       <form action="./signup_complete.php" method="POST">

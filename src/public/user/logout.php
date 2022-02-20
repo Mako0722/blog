@@ -10,4 +10,5 @@ header('Location: ./signin.php');
 exit();
 
 //セッションを破壊
+
 ?>

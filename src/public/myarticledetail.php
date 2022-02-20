@@ -1,21 +1,9 @@
 <?php
-
+require_once __DIR__ . '/../app/Lib/myPageFunction.php';
 session_start();
 $id = filter_input(INPUT_GET, 'id');
 
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO(
-    'mysql:host=mysql; dbname=blog; charset=utf8mb4',
-    $dbUserName,
-    $dbPassword
-);
-
-$sql = 'SELECT * FROM blogs WHERE id = :id';
-$statement = $pdo->prepare($sql);
-$statement->bindValue(':id', $id, PDO::PARAM_INT);
-$statement->execute();
-$blog = $statement->fetch(PDO::FETCH_ASSOC);
+$blog = articleMy($id);
 ?>
 
 

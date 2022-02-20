@@ -1,40 +1,47 @@
 <?php
+require_once __DIR__ . '/../../app/Lib/loginUser.php';
+require_once __DIR__ . '/../../app/Lib/redirect.php';
+
 $email = filter_input(INPUT_POST, 'email');
 $password = filter_input(INPUT_POST, 'password');
 
 session_start();
 if (empty($email) || empty($password)) {
     $_SESSION['errors'] = 'パスワードとメールアドレスを入力してください';
-    header('Location: ./signin.php');
-    exit();
+    redirect('signin.php');
 }
 
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO(
-    'mysql:host=mysql; dbname=blog; charset=utf8mb4',
-    $dbUserName,
-    $dbPassword
-);
-
-$sql = 'SELECT * FROM users WHERE email = :email';
-$statement = $pdo->prepare($sql);
-$statement->bindValue(':email', $email, PDO::PARAM_STR);
-$statement->execute();
-$member = $statement->fetch(PDO::FETCH_ASSOC);
+// $dbUserName = 'root';
+// $dbPassword = 'password';
+// $pdo = new PDO(
+//     'mysql:host=mysql; dbname=blog; charset=utf8mb4',
+//     $dbUserName,
+//     $dbPassword
+// );
+$member =loginUser($email);
 $shouldPasswordCheck = !$member ? false : true;
+// $sql = 'SELECT * FROM users WHERE email = :email';
+// $statement = $pdo->prepare($sql);
+// $statement->bindValue(':email', $email, PDO::PARAM_STR);
+// $statement->execute();
+// $member = $statement->fetch(PDO::FETCH_ASSOC);
+// $shouldPasswordCheck = !$member ? false : true;
+
+
 
 
 
 if (!password_verify($password, $member['password'])) {
     $_SESSION['errors'] = 'メールアドレスまたはパスワードが違います';
-    header('Location: ./signin.php');
-    exit();
+    redirect('signin.php');
+
 }
 
 $_SESSION['user_id'] = $member['id'];
 $_SESSION['user_name'] = $member['name'];
-header('Location: ../index.php');
-exit();
+// header('Location: ../index.php');
+// exit();
+redirect('../index.php');
+
 
 ?>

@@ -1,39 +1,15 @@
 <?php
+require_once __DIR__ . '/../app/Lib/detailFunction.php';
+
 session_start();
 $user_id = $_SESSION['user_id'];
 
 $id = filter_input(INPUT_GET, 'id');
 
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO(
-    'mysql:host=mysql; dbname=blog; charset=utf8mb4',
-    $dbUserName,
-    $dbPassword
-);
+$blog = detailDisplay($id);
 
-$sql = 'SELECT * FROM blogs WHERE id = :id';
-$statement = $pdo->prepare($sql);
-$statement->bindValue(':id', $id, PDO::PARAM_INT);
-$statement->execute();
-$blog = $statement->fetch(PDO::FETCH_ASSOC);
+$comments = commentsDisplay();
 
-$sql = 'SELECT * FROM comments';
-$sortMode = '';
-if (!empty($_GET['order'])) {
-    $sortMode = filter_input(
-        INPUT_GET,
-        'order',
-        FILTER_SANITIZE_FULL_SPECIAL_CHARS
-    );
-}
-if ($sortMode == 'asc' || $sortMode == 'desc') {
-    $sql = $sql . " order by created_at $sortMode";
-}
-
-$statement = $pdo->prepare($sql);
-$statement->execute();
-$comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 $my_comments = [];
 foreach ($comments as $comment) {
     if ($comment['blog_id'] == $blog['id']) {
@@ -47,7 +23,7 @@ if (empty($commenter_name) || empty($comments)) {
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">

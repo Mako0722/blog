@@ -2,6 +2,6 @@
 
 function redirect(string $redirectPath): void
 {
-	header("Location: " . $redirectPath);
-	exit;
+    header('Location: ' . $redirectPath);
+    exit();
 }
