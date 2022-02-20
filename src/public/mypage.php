@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/../app/Lib/myPageFunction.php';
+
+
 session_start();
 $username = $_SESSION['user_name'];
 $user_id = $_SESSION['user_id'];
@@ -17,25 +20,14 @@ if (isset($_SESSION['user_id'])) {
     $link = '<a href="login.php">ログイン</a>';
 }
 
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO(
-    'mysql:host=mysql; dbname=blog; charset=utf8mb4',
-    $dbUserName,
-    $dbPassword
-);
-
-$sql = 'SELECT * FROM blogs';
-$statement = $pdo->prepare($sql);
-$statement->execute();
-$blogs = $statement->fetchAll(PDO::FETCH_ASSOC);
-
+$blogs = articleMyList();
 $my_blogs = [];
 foreach ($blogs as $blog) {
     if ($user_id == $blog['user_id']) {
         $my_blogs[] = $blog;
     }
 }
+
 ?>
 
 
