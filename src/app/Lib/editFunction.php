@@ -15,7 +15,8 @@ function editModify($id, $title, $contents)
 }
 
 // 自分が投稿した記事のみ表示
-function editScreen($id){
+function editScreen($id)
+{
     $pdo = pdoInit();
 
     $sql = 'SELECT * FROM blogs WHERE id = :id';

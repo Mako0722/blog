@@ -1,7 +1,7 @@
 <?php
 session_start();
 $user_id = $_SESSION['user_id'];
-// $username = $_SESSION['user_name'];
+
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: signin.php');

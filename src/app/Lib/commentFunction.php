@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/../Lib/pdoInit.php';
 
-function commentPosts($user_id, $blog_id, $commenter_name, $comments){
+function commentPosts($user_id, $blog_id, $commenter_name, $comments)
+{
     $pdo = pdoInit();
     $sql =
         'INSERT INTO `comments`(`user_id`, `blog_id`, `commenter_name`,`comments`) VALUES (:user_id,:blog_id,:commenter_name,:comments)';
@@ -13,18 +14,19 @@ function commentPosts($user_id, $blog_id, $commenter_name, $comments){
     $statement->execute();
 }
 
-function errorsInit($commenter_name,$comments)
+function errorsInit($commenter_name, $comments)
 {
     //エラー
     if (empty($commenter_name)) {
-    exit('コメント名を入力してください');
+        exit('コメント名を入力してください');
     }
     if (empty($comments)) {
         exit('コメントを入力してください');
     }
 }
 
-function commentDisplaySort($id){
+function commentDisplaySort($id)
+{
     $pdo = pdoInit();
 
     $sql = 'SELECT * FROM blogs WHERE id = :id';
@@ -35,7 +37,8 @@ function commentDisplaySort($id){
     return $blog;
 }
 
-function isSort($commenter_name,$my_comments){
+function isSort($commenter_name, $my_comments)
+{
     $pdo = pdoInit();
 
     $sql = 'SELECT * FROM comments';
