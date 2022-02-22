@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../app/Lib/myPageFunction.php';
 
-
 session_start();
 $username = $_SESSION['user_name'];
 $user_id = $_SESSION['user_id'];
@@ -27,7 +26,6 @@ foreach ($blogs as $blog) {
         $my_blogs[] = $blog;
     }
 }
-
 ?>
 
 

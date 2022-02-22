@@ -20,10 +20,8 @@ if (isset($_SESSION['user_id'])) {
     $link = '<a href="login.php">ログイン</a>';
 }
 
-
-$blogs =articleList();
+$blogs = articleList();
 $blogs = orderSearch();
-
 ?>
 
 

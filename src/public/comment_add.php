@@ -8,11 +8,9 @@ $blog_id = filter_input(INPUT_POST, 'id');
 $commenter_name = filter_input(INPUT_POST, 'commenter_name');
 $comments = filter_input(INPUT_POST, 'comments');
 
-errorsInit($commenter_name,$comments);
-
+errorsInit($commenter_name, $comments);
 
 commentPosts($user_id, $blog_id, $commenter_name, $comments);
-
 
 redirect('detail.php?id=' . $blog_id);
 

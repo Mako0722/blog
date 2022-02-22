@@ -3,7 +3,6 @@
 function pdoInit(): PDO
 {
     //db接続
-    //db接続
     $dbUserName = 'root';
     $dbPassword = 'password';
     $pdo = new PDO(

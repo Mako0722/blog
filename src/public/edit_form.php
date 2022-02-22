@@ -4,9 +4,7 @@ session_start();
 $user_id = $_SESSION['user_id'];
 $id = filter_input(INPUT_GET, 'id');
 
-
 $blog = editScreen($id);
-
 ?>
 
 
