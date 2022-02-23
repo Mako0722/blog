@@ -1,13 +1,14 @@
 <?php
-// session_start();
-// $errors = $_SESSION['errors'] ?? [];
-// unset($_SESSION['errors']);
+require_once __DIR__ . '/../../app/Lib/Session.php';
 
-require_once __DIR__ . '/../../app/Lib/session.php';
 session_start();
-$errors = errorsInit();
-$userName = $_SESSION['formInputs']['userName'] ?? '';
-$email = $_SESSION['formInputs']['mail'] ?? '';
+
+$session = Session::getInstance();
+$errors = $session->popAllErrors();
+$formInput = $session->getFormInputs();
+
+$name = $formInputs['userName'] ?? '';
+$email = $formInputs['mail'] ?? '';
 ?>
 
 
@@ -33,7 +34,7 @@ $email = $_SESSION['formInputs']['mail'] ?? '';
       <?php endforeach; ?>
 
       <form action="./signup_complete.php" method="POST">
-        <p><input class='border-2 border-gray-300 w-full mb-5' placeholder="User name" type=“text” name="name" required value="<?php echo $userName; ?>"></p>
+        <p><input class='border-2 border-gray-300 w-full mb-5' placeholder="User name" type=“text” name="name" required value="<?php echo $name; ?>"></p>
         <p><input class='border-2 border-gray-300 w-full mb-5' placeholder="Email" type=“email” name="email" required value="<?php echo $email; ?>"></p>
         <p><input class='border-2 border-gray-300 w-full mb-5' placeholder="Password" type="password" name="password"></p>
         <p><input class='border-2 border-gray-300 w-full mb-5' placeholder="Password確認" type="password" name="confirmPassword"></p>
