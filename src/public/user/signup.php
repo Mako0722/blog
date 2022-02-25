@@ -7,8 +7,9 @@ $session = Session::getInstance();
 $errors = $session->popAllErrors();
 $formInput = $session->getFormInputs();
 
-$name = $formInputs['userName'] ?? '';
-$email = $formInputs['mail'] ?? '';
+
+$name = $formInputs['name'] ?? '';
+$email = $formInputs['email'] ?? '';
 ?>
 
 

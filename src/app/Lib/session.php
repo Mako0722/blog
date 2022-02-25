@@ -1,7 +1,7 @@
 <?php
-// 1回目であれば自身のインスタンスを生成し、返す。
-// セッション処理の開始をする。
-// @return self
+/**
+  * セッションの操作を行うクラス
+  */
 final class Session
 {
 
@@ -24,7 +24,6 @@ final class Session
         return self::$instance;
     }
 
-
     private static function start(): void
     {
         if (!isset($_SESSION)) {
@@ -37,12 +36,6 @@ final class Session
         $_SESSION[self::ERROR_KEY][] = $errorMessage;
     }
 
-    /**
-      * セッションに保存されているエラー文を返す。
-      * セッションに保存されているエラー文を削除する。
-      *
-      *
-      */
     public function popAllErrors(): array
     {
         $errors = $_SESSION[self::ERROR_KEY] ?? [];
@@ -50,21 +43,11 @@ final class Session
         return $errors;
     }
 
-    /**
-      * エラー文がセッションに保存されていたら「true」を返す。
-      * エラー文がセッションに保存されていなければ「false」を返す。
-      *
-      *
-      */
     public function existsErrors(): bool
     {
         return !empty($_SESSION[self::ERROR_KEY]);
     }
 
-    /**
-      * 引数で受け取ったキーのセッションに保存されているデータを削除する。
-      *
-      */
     public function clear(string $sessionKey): void
     {
         unset($_SESSION[$sessionKey]);
@@ -77,7 +60,6 @@ final class Session
         }
     }
 
-
     public function getFormInputs(): array
     {
         return $_SESSION[self::FORM_INPUTS_KEY] ?? [];
@@ -89,7 +71,6 @@ final class Session
         $_SESSION[self::MESSAGE_KEY] = $message;
     }
 
-
     public function getMessage(): string
     {
         $message = $_SESSION[self::MESSAGE_KEY] ?? '';
@@ -97,5 +78,3 @@ final class Session
         return $message;
     }
 }
-
-?>

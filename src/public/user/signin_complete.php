@@ -10,19 +10,21 @@ $password = filter_input(INPUT_POST, 'password');
 $session = Session::getInstance();
 if (empty($email) || empty($password)) {
     $session->appendError( 'パスワードとメールアドレスを入力してください');
-    redirect('signin.php');
+    redirect('./signin.php');
 }
 
 $users = findUserByMail($email);
-
+// var_dump($password);
+// var_dump($users['password']);
+// die;
 if (!password_verify($password,  $users['password'])) {
-    $_SESSION['errors'] = 'メールアドレスまたはパスワードが違います';
-    redirect('signin.php');
+    $session->appendError('メールアドレスまたはパスワードが違います');
+    redirect('./signin.php');
 }
 
 $formInputs = [
-    'userId' => $users['id'],
-    'userName' => $users['user_name'],
+    'id' => $users['id'],
+    'name' => $users['name'],
 ];
 $session->setFormInputs($formInputs);
 redirect('../index.php');

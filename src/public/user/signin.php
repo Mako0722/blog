@@ -1,12 +1,10 @@
 <?php
 require_once __DIR__ . '/../../app/Lib/Session.php';
 
+
 $session = Session::getInstance();
 $errors = $session->popAllErrors();
 $message = $session->getMessage();
-
-
-
 
 ?>
 
@@ -25,8 +23,12 @@ $message = $session->getMessage();
     <div class="w-96  bg-white pt-10 pb-10 rounded-xl">
         <div class="w-60 m-auto text-center">
             <h2 class="text-2xl mb-5">ログイン</h2>
-            <h3 class="mb-5 text-xl"><?php echo $registed; ?></h3>
-            <p class="text-red-600"><?php echo $error; ?></p>
+            <h3 class="mb-5 text-xl"><?php echo $message; ?></h3>
+            <?php if (!empty($errors)): ?>
+                <?php foreach ($errors as $error): ?>
+                    <p class="text-red-600"><?php echo $error; ?></p>
+                <?php endforeach; ?>
+            <?php endif; ?>
             <form class="px-4" action="./signin_complete.php" method="POST">
                 <p><input class="border-2 border-gray-300 mb-5 w-full" type=“text” name="email" type="email" required placeholder="Email" value="<?php if (
                     isset($_SESSION['email'])

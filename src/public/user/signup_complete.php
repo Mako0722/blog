@@ -22,7 +22,7 @@ if ($password !== $confirmPassword) {
 if ($session->existsErrors()) {
     $formInputs =[
         'email' => $email,
-        'user' => $user,
+        'name' => $name,
     ];
     $session->setFormInputs($formInputs);
     redirect('signup.php');
@@ -42,4 +42,4 @@ createUser($name, $email, $password);
 
 $message = '登録できました。';
 $session->setMessage($message);
-redirect('signin.php');
+redirect('./signin.php');
