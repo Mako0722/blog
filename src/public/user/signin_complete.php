@@ -3,6 +3,7 @@ require_once __DIR__ . '/../../app/Lib/pdoInit.php';
 require_once __DIR__ . '/../../app/Lib/findUserByMail.php';
 require_once __DIR__ . '/../../app/Lib/redirect.php';
 require_once __DIR__ . '/../../app/Lib/Session.php';
+require_once(__DIR__ . '/../../app/Lib/SessionKey.php');
 
 $email = filter_input(INPUT_POST, 'email');
 $password = filter_input(INPUT_POST, 'password');
@@ -26,7 +27,8 @@ $formInputs = [
     'id' => $users['id'],
     'name' => $users['name'],
 ];
-$session->setFormInputs($formInputs);
+$formInputsKey = new SessionKey(SessionKey::FORM_INPUTS_KEY);
+$session->setFormInputs($formInputsKey, $formInputs);
 redirect('../index.php');
 
 ?>
