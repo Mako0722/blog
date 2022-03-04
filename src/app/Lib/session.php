@@ -37,7 +37,7 @@ final class Session
 
     public function popAllErrors(): array
     {
-        $errors = $_SESSION[SessionKey::ERROR_KEY] ?? [];
+        $errors = $_SESSION[SessionKey::ERROR_KEY] ?? []; 
         $errorKey = new SessionKey(SessionKey::ERROR_KEY);
         $this->clear($errorKey);
         return $errors;
