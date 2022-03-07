@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../app/Lib/myPageFunction.php';
 session_start();
 $id = filter_input(INPUT_GET, 'id');
-
 $blog = articleMy($id);
 ?>
 

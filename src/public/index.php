@@ -1,18 +1,22 @@
 <?php
 
 require_once __DIR__ . '/../app/Lib/articleList.php';
+require_once __DIR__ . '/../app/Lib/redirect.php';
+require_once __DIR__ . '/../app/Lib/Session.php';
 
-session_start();
-$username = $_SESSION['user_name'];
-
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ./user/signin.php');
-    exit();
+$session = Session::getInstance();
+if (!isset($_SESSION['formInputs']['id'])) {
+    redirect('./user/signin.php');
 }
+// if (!isset($_SESSION['user_id'])) {
+//     header('Location: ./user/signin.php');
+//     exit();
+// }
+$name = $_SESSION['formInputs']['name'];
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['formInputs']['id'])) {
     //ログインしているとき
-    $msg = 'こんにちは' . $username . 'さん';
+    $msg = 'こんにちは' . $name . 'さん';
     $link = '<a href="./user/logout.php">ログアウト</a>';
 } else {
     //ログインしていない時

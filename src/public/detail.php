@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/../app/Lib/detailFunction.php';
 
-session_start();
-$user_id = $_SESSION['user_id'];
+require_once __DIR__ . '/../app/Lib/Session.php';
+$session = Session::getInstance();
+
 
 $id = filter_input(INPUT_GET, 'id');
 
@@ -10,12 +11,14 @@ $blog = detailDisplay($id);
 
 $comments = commentsDisplay();
 
+
 $my_comments = [];
 foreach ($comments as $comment) {
-    if ($comment['blog_id'] == $blog['id']) {
+    if ($comment['id'] == $blog['id']) {
         $my_comments[] = $comment;
     }
 }
+
 if (empty($commenter_name) || empty($comments)) {
     $errors[] = '「コメント名」「コメント」の記入されていません！';
 }
