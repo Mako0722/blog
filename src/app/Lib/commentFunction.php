@@ -37,7 +37,7 @@ function commentDisplaySort($id)
     return $blog;
 }
 
-function isSort($commenter_name, $my_comments)
+function isSort($commenter_name)
 {
     $pdo = pdoInit();
 
@@ -57,12 +57,6 @@ function isSort($commenter_name, $my_comments)
     $statement = $pdo->prepare($sql);
     $statement->execute();
     $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $my_comments = [];
-    foreach ($comments as $comment) {
-        if ($comment['blog_id'] == $blog['id']) {
-            $my_comments[] = $comment;
-        }
-    }
     if (empty($commenter_name) || empty($comments)) {
         $errors[] = '「コメント名」「コメント」の記入されていません！';
     }

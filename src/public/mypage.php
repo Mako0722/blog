@@ -6,7 +6,7 @@ require_once __DIR__ . '/../app/Lib/SessionKey.php';
 
 $session = Session::getInstance();
 
-$user_id = $_SESSION['formInputs']['id'];
+$user_id = $_SESSION['formInputs']['userId'];
 
 if (!isset($user_id)) {
     redirect('./user/signin.php');
