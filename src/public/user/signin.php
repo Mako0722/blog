@@ -1,10 +1,12 @@
 <?php
-require_once __DIR__ . '/../../app/Lib/Session.php';
+// require_once __DIR__ . '/../../app/Lib/Session.php';
 
+session_start();
+$errors = $_SESSION['errors'] ?? [];
+unset($_SESSION['errors']);
 
-$session = Session::getInstance();
-$errors = $session->popAllErrors();
-$successRegistedMessag = $session->getMessage();
+$successRegistedMessag = $_SESSION['message'] ?? "";
+unset($_SESSION['message']);
 
 ?>
 

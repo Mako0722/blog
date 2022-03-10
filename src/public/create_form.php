@@ -4,7 +4,7 @@ require_once __DIR__ . '/../app/Lib/Session.php';
 
 $session = Session::getInstance();
 
-if (!isset($_SESSION['formInputs']['id'])) {
+if (!isset($_SESSION['formInputs']['userId'])) {
     redirect('./user/signin.php');
 }
 ?>

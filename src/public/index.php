@@ -2,19 +2,16 @@
 
 require_once __DIR__ . '/../app/Lib/articleList.php';
 require_once __DIR__ . '/../app/Lib/redirect.php';
-require_once __DIR__ . '/../app/Lib/Session.php';
+session_start();
+if (!isset($_SESSION['formInputs']['userId'])) redirect("./user/signin.php");
 
-$session = Session::getInstance();
-if (!isset($_SESSION['formInputs']['id'])) {
-    redirect('./user/signin.php');
-}
 // if (!isset($_SESSION['user_id'])) {
 //     header('Location: ./user/signin.php');
 //     exit();
 // }
 $name = $_SESSION['formInputs']['name'];
 
-if (isset($_SESSION['formInputs']['id'])) {
+if (isset($_SESSION["formInputs"]['userId'])) {
     //ログインしているとき
     $msg = 'こんにちは' . $name . 'さん';
     $link = '<a href="./user/logout.php">ログアウト</a>';
@@ -40,7 +37,8 @@ $blogs = orderSearch();
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <title>blog一覧</title>
 </head>
-<?php require_once __DIR__ . '/../app/Lib/header.php'; ?>
+
+<?php require_once(__DIR__ . '/../app/utils/header.php'); ?>
 
 <body>
   <div>

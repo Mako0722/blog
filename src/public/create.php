@@ -4,7 +4,7 @@ require_once __DIR__ . '/../app/Lib/redirect.php';
 require_once __DIR__ . '/../app/Lib/Session.php';
 
 $session = Session::getInstance();
-$user_id = $_SESSION['formInputs']['id'];
+$user_id = $_SESSION['formInputs']['userId'];
 $title = filter_input(INPUT_POST, 'title');
 $contents = filter_input(INPUT_POST, 'contents');
 

@@ -10,18 +10,13 @@ $id = filter_input(INPUT_GET, 'id');
 $blog = detailDisplay($id);
 
 $comments = commentsDisplay();
-
-
 $my_comments = [];
 foreach ($comments as $comment) {
-    if ($comment['id'] == $blog['id']) {
+    if ($comment['blog_id'] == $blog['id']) {
         $my_comments[] = $comment;
     }
 }
 
-if (empty($commenter_name) || empty($comments)) {
-    $errors[] = '「コメント名」「コメント」の記入されていません！';
-}
 ?>
 
 
