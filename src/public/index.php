@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../app/Lib/articleList.php';
 require_once __DIR__ . '/../app/Lib/redirect.php';
 session_start();
-if (!isset($_SESSION["formInputs"]['userId'])) redirect("./user/signin.php");
+if (!isset($_SESSION['formInputs']['userId'])) redirect("./user/signin.php");
 
 // if (!isset($_SESSION['user_id'])) {
 //     header('Location: ./user/signin.php');
