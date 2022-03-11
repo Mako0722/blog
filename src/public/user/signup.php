@@ -1,16 +1,9 @@
 <?php
-// require_once __DIR__ . '/../../app/Lib/Session.php';
-
 session_start();
 
-// $session = Session::getInstance();
-// $errors = $session->popAllErrors();
-// $formInput = $session->getFormInputs();
 $errors = $_SESSION['errors'] ?? [];
 unset($_SESSION['errors']);
 
-// $name = $formInputs['name'] ?? '';
-// $email = $formInputs['email'] ?? '';
 $name = $_SESSION['formInputs']['name'] ?? '';
 $email = $_SESSION['formInputs']['email'] ?? '';
 ?>

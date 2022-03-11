@@ -1,11 +1,5 @@
 <?php
 
-// require_once __DIR__ . '/../../app/Lib/Session.php';
-// require_once __DIR__ . '/../../app/Lib/findUserByMail.php';
-// require_once __DIR__ . '/../../app/Lib/createUser.php';
-// require_once __DIR__ . '/../../app/Lib/redirect.php';
-// require_once(__DIR__ . '/../../app/Lib/SessionKey.php');
-
 require_once(__DIR__ . '/../../app/dao/UserDao.php');
 require_once(__DIR__ . '/../../app/utils/redirect.php');
 
