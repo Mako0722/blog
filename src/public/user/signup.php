@@ -4,8 +4,8 @@ session_start();
 $errors = $_SESSION['errors'] ?? [];
 unset($_SESSION['errors']);
 
-$name = $_SESSION['formInputs']['name'] ?? '';
-$email = $_SESSION['formInputs']['email'] ?? '';
+$name = $_SESSION['user']['name'] ?? '';
+$email = $_SESSION['user']['email'] ?? '';
 ?>
 
 

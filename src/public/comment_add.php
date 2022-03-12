@@ -3,7 +3,7 @@ require_once __DIR__ . '/../app/Lib/commentFunction.php';
 require_once __DIR__ . '/../app/Lib/redirect.php';
 
 session_start();
-$user_id = $_SESSION['formInputs']['userId'];
+$user_id = $_SESSION['user']['id'];
 $blog_id = filter_input(INPUT_POST, 'id');
 $commenter_name = filter_input(INPUT_POST, 'commenter_name');
 $comments = filter_input(INPUT_POST, 'comments');
