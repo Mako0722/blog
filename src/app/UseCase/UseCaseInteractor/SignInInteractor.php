@@ -1,5 +1,6 @@
 <?php
-
+require_once(__DIR__ . '/../../ValueObject/HashedPassword.php');
+require_once(__DIR__ . '/../UseCaseOutput/SignInOutput.php');
 final class SignInInteractor
 {
     const FAILED_MESSAGE = "メールアドレスまたは<br />パスワードが間違っています";
