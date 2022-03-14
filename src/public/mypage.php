@@ -6,12 +6,12 @@ require_once __DIR__ . '/../app/Lib/SessionKey.php';
 
 $session = Session::getInstance();
 
-$user_id = $_SESSION['formInputs']['userId'];
+$user_id = $_SESSION['user']['id'];
 
 if (!isset($user_id)) {
     redirect('./user/signin.php');
 }
-$name = $_SESSION['formInputs']['name'];
+$name = $_SESSION['user']['name'];
 
 
 if (isset($user_id)) {

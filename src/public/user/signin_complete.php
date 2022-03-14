@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . '/../../app/dao/UserDao.php';
 require_once __DIR__ . '/../../app/utils/redirect.php';
+require_once(__DIR__ . '/../../app/UseCase/UseCaseInput/SignInInput.php');
+require_once(__DIR__ . '/../../app/UseCase/UseCaseInteractor/SignInInteractor.php');
+require_once(__DIR__ . '/../../app/UseCase/UseCaseOutput/SignInOutput.php');
 
 session_start();
 $email = filter_input(INPUT_POST, 'email');
@@ -11,14 +14,13 @@ if (empty($email) || empty($password)) {
     redirect('./signin.php');
 }
 
-$userDao = new UserDao();
-$member = $userDao->findByEmail($email);
+$useCaseInput = new SignInInput($email, $password);
+$useCase = new SignInInteractor($useCaseInput);
+$useCaseOutput = $useCase->handler();
 
-if (!password_verify($password, $member['password'])) {
-    $_SESSION['errors'][] = 'メールアドレスまたは<br />パスワードが違います';
-    redirect('./signin.php');
+if ($useCaseOutput->isSuccess()) {
+    redirect("../index.php");
+} else {
+    $_SESSION['errors'][] = $useCaseOutput->message();
+    redirect("./user/signin.php");
 }
-
-$_SESSION['formInputs']['userId'] = $member['id'];
-$_SESSION['formInputs']['name'] = $member['name'];
-redirect('../index.php');

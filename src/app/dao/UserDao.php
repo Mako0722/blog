@@ -21,7 +21,7 @@ final class UserDao extends Dao
         $statement->execute();
     }
 
-    public function findByEmail(string $email): ?array
+    public function findByMail(string $email): ?array
     {
         $sql = sprintf(
             'SELECT * FROM %s WHERE email = :email',

@@ -3,15 +3,15 @@
 require_once __DIR__ . '/../app/Lib/articleList.php';
 require_once __DIR__ . '/../app/Lib/redirect.php';
 session_start();
-if (!isset($_SESSION['formInputs']['userId'])) redirect("./user/signin.php");
+if (!isset($_SESSION['user']['id'])) redirect("./user/signin.php");
 
 // if (!isset($_SESSION['user_id'])) {
 //     header('Location: ./user/signin.php');
 //     exit();
 // }
-$name = $_SESSION['formInputs']['name'];
+$name = $_SESSION['user']['name'];
 
-if (isset($_SESSION["formInputs"]['userId'])) {
+if (isset($_SESSION["user"]['id'])) {
     //ログインしているとき
     $msg = 'こんにちは' . $name . 'さん';
     $link = '<a href="./user/logout.php">ログアウト</a>';

@@ -1,8 +1,10 @@
 <?php
-
 require_once(__DIR__ . '/../../app/dao/UserDao.php');
+require_once(__DIR__ . '/../../app/dao/Dao.php');
 require_once(__DIR__ . '/../../app/utils/redirect.php');
-
+require_once(__DIR__ . '/../../app/UseCase/UseCaseInput/SignUpInput.php');
+require_once(__DIR__ . '/../../app/UseCase/UseCaseInteractor/SignUpInteractor.php');
+require_once(__DIR__ . '/../../app/UseCase/UseCaseOutput/SignUpOutput.php');
 
 $email = filter_input(INPUT_POST, 'email');
 $name = filter_input(INPUT_POST, 'name');
@@ -12,28 +14,25 @@ $confirmPassword = filter_input(INPUT_POST, 'confirmPassword');
 
 session_start();
 
-
 if (empty($password) || empty($confirmPassword)) $_SESSION['errors'][] = "パスワードを入力してください";
 
 if ($password !== $confirmPassword) $_SESSION['errors'][] = "パスワードが一致しません";
 
-
 if(!empty($_SESSION['errors'])){
-    $_SESSION['formInputs']['name'] = $name;
-    $_SESSION['formInputs']['email'] =  $email;
+    $_SESSION['user']['name'] = $name;
+    $_SESSION['user']['email'] =  $email;
     redirect('./signup.php');
 }
 
 
-$userDao = new UserDao();
+$useCaseInput = new SignUpInput($name, $email, $password);
+$useCase = new SignUpInteractor($useCaseInput);
+$useCaseOutput = $useCase->handler();
 
-$user = $userDao->findByEmail($email);
-if (!is_null($user)) $_SESSION['errors'][] = "すでに登録済みのメールアドレスです";
-if (!empty($_SESSION['errors'])) redirect('./signup.php');
-
-// ユーザーの保存
-$userDao->create($name, $email, $password);
-
-
-$_SESSION['message'] = "登録できました。";
-redirect('./signin.php');
+if ($useCaseOutput->isSuccess()) {
+    $_SESSION['message'] = $useCaseOutput->message();
+    redirect('./signin.php');
+}  else {
+    $_SESSION['errors'][] = $useCaseOutput->message();
+    redirect('./signup.php');
+}
