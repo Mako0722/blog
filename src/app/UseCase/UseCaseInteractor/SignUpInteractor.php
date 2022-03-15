@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__ . '/../UseCaseOutput/SignUpOutput.php');
 
 final class SignUpInteractor
 {

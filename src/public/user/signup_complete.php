@@ -5,12 +5,14 @@ require_once(__DIR__ . '/../../app/utils/redirect.php');
 require_once(__DIR__ . '/../../app/UseCase/UseCaseInput/SignUpInput.php');
 require_once(__DIR__ . '/../../app/UseCase/UseCaseInteractor/SignUpInteractor.php');
 require_once(__DIR__ . '/../../app/UseCase/UseCaseOutput/SignUpOutput.php');
+require_once(__DIR__ . '/../../app/ValueObject/UserName.php');
+require_once(__DIR__ . '/../../app/ValueObject/Email.php');
+require_once(__DIR__ . '/../../app/ValueObject/InputPassword.php');
 
 $email = filter_input(INPUT_POST, 'email');
 $name = filter_input(INPUT_POST, 'name');
 $password = filter_input(INPUT_POST, 'password');
 $confirmPassword = filter_input(INPUT_POST, 'confirmPassword');
-
 
 session_start();
 
@@ -24,11 +26,12 @@ if(!empty($_SESSION['errors'])){
     redirect('./signup.php');
 }
 
-
+$userName = new UserName($name);
+$userEmail = new Email($email);
+$userPassword = new InputPassword($password);
 $useCaseInput = new SignUpInput($name, $email, $password);
 $useCase = new SignUpInteractor($useCaseInput);
 $useCaseOutput = $useCase->handler();
-
 if ($useCaseOutput->isSuccess()) {
     $_SESSION['message'] = $useCaseOutput->message();
     redirect('./signin.php');
