@@ -9,14 +9,10 @@ require_once(__DIR__ . '/../../app/ValueObject/UserName.php');
 require_once(__DIR__ . '/../../app/ValueObject/Email.php');
 require_once(__DIR__ . '/../../app/ValueObject/InputPassword.php');
 
-
-
-
 $email = filter_input(INPUT_POST, 'email');
 $name = filter_input(INPUT_POST, 'name');
 $password = filter_input(INPUT_POST, 'password');
 $confirmPassword = filter_input(INPUT_POST, 'confirmPassword');
-
 
 session_start();
 
@@ -36,8 +32,6 @@ $userPassword = new InputPassword($password);
 $useCaseInput = new SignUpInput($name, $email, $password);
 $useCase = new SignUpInteractor($useCaseInput);
 $useCaseOutput = $useCase->handler();
-
-
 if ($useCaseOutput->isSuccess()) {
     $_SESSION['message'] = $useCaseOutput->message();
     redirect('./signin.php');
