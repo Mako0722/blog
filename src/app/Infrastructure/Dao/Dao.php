@@ -1,4 +1,7 @@
 <?php
+namespace App\Infrastructure\Dao;
+
+use PDO;
 
 abstract class Dao
 {

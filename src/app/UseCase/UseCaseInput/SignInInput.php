@@ -1,4 +1,5 @@
 <?php
+namespace App\Usecase\UseCaseInput;
 
 final class SignInInput
 {

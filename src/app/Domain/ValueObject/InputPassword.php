@@ -1,4 +1,7 @@
 <?php
+namespace App\Domain\ValueObject;
+use Exception;
+
 require_once(__DIR__ . '/HashedPassword.php');
 
 final class InputPassword

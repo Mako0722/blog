@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/../app/Lib/articleList.php';
 require_once __DIR__ . '/../app/Lib/redirect.php';
 session_start();
@@ -38,7 +37,7 @@ $blogs = orderSearch();
   <title>blog一覧</title>
 </head>
 
-<?php require_once(__DIR__ . '/../app/utils/header.php'); ?>
+<?php require_once(__DIR__ . '/header.php'); ?>
 
 <body>
   <div>

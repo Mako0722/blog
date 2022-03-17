@@ -1,5 +1,9 @@
 <?php
+namespace App\Infrastructure\Dao;
+
 require_once __DIR__ . '/../dao/Dao.php';
+
+use PDO;
 
 final class UserDao extends Dao
 {

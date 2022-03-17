@@ -1,4 +1,5 @@
 <?php
+namespace App\Domain\ValueObject;
 
 final class HashedPassword
 {

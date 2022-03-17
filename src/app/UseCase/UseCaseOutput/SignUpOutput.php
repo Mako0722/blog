@@ -1,4 +1,5 @@
 <?php
+namespace App\Usecase\UseCaseOutput;
 
 final class SignUpOutput
 {
