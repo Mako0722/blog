@@ -1,18 +1,11 @@
 <?php
 namespace App\Usecase\UseCaseInteractor;
 
-use App\Domain\Entity\User;
-use App\Domain\ValueObject\User\UserId;
-use App\Domain\ValueObject\User\UserName;
-use App\Domain\ValueObject\Email;
-use App\Domain\ValueObject\HashedPassword;
 use App\Usecase\UseCaseInput\SignInInput;
 use App\Usecase\UseCaseOutput\SignInOutput;
 use App\Infrastructure\Dao\UserDao;
 
 
-require_once(__DIR__ . '/../../Domain/ValueObject/HashedPassword.php');
-require_once(__DIR__ . '/../UseCaseOutput/SignInOutput.php');
 final class SignInInteractor
 {
     const FAILED_MESSAGE = "メールアドレスまたは<br />パスワードが間違っています";

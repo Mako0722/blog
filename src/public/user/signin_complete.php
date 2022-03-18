@@ -3,8 +3,10 @@
 require_once __DIR__ . '/../../app/Infrastructure/Redirect/redirect.php';
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use App\Usecase\UseCaseInput\SignInInput;
-use App\Usecase\UseCaseInteractor\SignInInteractor;
+use App\Domain\ValueObject\Email;
+use App\Domain\ValueObject\InputPassword;
+use App\UseCase\UseCaseInput\SignInInput;
+use App\UseCase\UseCaseInteractor\SignInInteractor;
 
 
 
@@ -18,8 +20,8 @@ if (empty($email) || empty($password)) {
     redirect('./signin.php');
 }
 
-// $userEmail = new Email($email);
-// $inputPassword = new InputPassword($password);
+$userEmail = new Email($email);
+$inputPassword = new InputPassword($password);
 $useCaseInput = new SignInInput($email, $password);
 $useCase = new SignInInteractor($useCaseInput);
 $useCaseOutput = $useCase->handler();
@@ -28,5 +30,5 @@ if ($useCaseOutput->isSuccess()) {
     redirect("../index.php");
 } else {
     $_SESSION['errors'][] = $useCaseOutput->message();
-    redirect("./user/signin.php");
+    redirect("./signin.php");
 }
