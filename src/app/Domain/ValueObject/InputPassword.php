@@ -1,9 +1,12 @@
 <?php
+namespace App\Domain\ValueObject;
+use Exception;
+
 require_once(__DIR__ . '/HashedPassword.php');
 
 final class InputPassword
 {
-    const PASSWORD_REGULAR_EXPRESSIONS = "/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,100}+\z/";
+    const PASSWORD_REGULAR_EXPRESSIONS = '/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i';
 
     const INVALID_MESSAGE = "パスワードの形式が正しくありません";
 

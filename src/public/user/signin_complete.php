@@ -1,11 +1,15 @@
 <?php
-require_once __DIR__ . '/../../app/dao/UserDao.php';
-require_once __DIR__ . '/../../app/utils/redirect.php';
-require_once(__DIR__ . '/../../app/UseCase/UseCaseInput/SignInInput.php');
-require_once(__DIR__ . '/../../app/UseCase/UseCaseInteractor/SignInInteractor.php');
-require_once(__DIR__ . '/../../app/UseCase/UseCaseOutput/SignInOutput.php');
-require_once(__DIR__ . '/../../app/ValueObject/Email.php');
-require_once(__DIR__ . '/../../app/ValueObject/InputPassword.php');
+
+require_once __DIR__ . '/../../app/Infrastructure/Redirect/redirect.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use App\Domain\ValueObject\Email;
+use App\Domain\ValueObject\InputPassword;
+use App\UseCase\UseCaseInput\SignInInput;
+use App\UseCase\UseCaseInteractor\SignInInteractor;
+
+
+
 
 session_start();
 $email = filter_input(INPUT_POST, 'email');
@@ -26,5 +30,5 @@ if ($useCaseOutput->isSuccess()) {
     redirect("../index.php");
 } else {
     $_SESSION['errors'][] = $useCaseOutput->message();
-    redirect("./user/signin.php");
+    redirect("./signin.php");
 }

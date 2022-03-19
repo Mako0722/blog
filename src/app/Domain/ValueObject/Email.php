@@ -1,4 +1,6 @@
 <?php
+namespace App\Domain\ValueObject;
+use Exception;
 
 final class Email
 {

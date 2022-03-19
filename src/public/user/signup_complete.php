@@ -1,13 +1,16 @@
 <?php
-require_once(__DIR__ . '/../../app/dao/UserDao.php');
-require_once(__DIR__ . '/../../app/dao/Dao.php');
-require_once(__DIR__ . '/../../app/utils/redirect.php');
-require_once(__DIR__ . '/../../app/UseCase/UseCaseInput/SignUpInput.php');
-require_once(__DIR__ . '/../../app/UseCase/UseCaseInteractor/SignUpInteractor.php');
-require_once(__DIR__ . '/../../app/UseCase/UseCaseOutput/SignUpOutput.php');
-require_once(__DIR__ . '/../../app/ValueObject/UserName.php');
-require_once(__DIR__ . '/../../app/ValueObject/Email.php');
-require_once(__DIR__ . '/../../app/ValueObject/InputPassword.php');
+require_once __DIR__ . '/../../app/Infrastructure/Dao/UserDao.php';
+require_once __DIR__ . '/../../app/Infrastructure/Redirect/redirect.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use App\Domain\ValueObject\User\UserName;
+use App\Domain\ValueObject\Email;
+use App\Domain\ValueObject\InputPassword;
+use App\Usecase\UseCaseInput\SignUpInput;
+use App\Usecase\UseCaseInteractor\SignUpInteractor;
+
+
+
 
 $email = filter_input(INPUT_POST, 'email');
 $name = filter_input(INPUT_POST, 'name');

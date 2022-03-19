@@ -1,4 +1,6 @@
 <?php
+namespace App\Domain\ValueObject\User;
+use Exception;
 
 final class UserName
 {

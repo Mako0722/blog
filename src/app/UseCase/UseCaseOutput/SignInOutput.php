@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Usecase\UseCaseOutput;
 final class SignInOutput
 {
     private $isSuccess;
