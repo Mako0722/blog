@@ -2,7 +2,9 @@
 require_once __DIR__ . '/../app/Lib/articleList.php';
 require_once __DIR__ . '/../app/Lib/redirect.php';
 session_start();
-if (!isset($_SESSION['user']['id'])) redirect("./user/signin.php");
+if (!isset($_SESSION['user']['id'])) {
+    redirect('./user/signin.php');
+}
 
 // if (!isset($_SESSION['user_id'])) {
 //     header('Location: ./user/signin.php');
@@ -10,7 +12,7 @@ if (!isset($_SESSION['user']['id'])) redirect("./user/signin.php");
 // }
 $name = $_SESSION['user']['name'];
 
-if (isset($_SESSION["user"]['id'])) {
+if (isset($_SESSION['user']['id'])) {
     //ログインしているとき
     $msg = 'こんにちは' . $name . 'さん';
     $link = '<a href="./user/logout.php">ログアウト</a>';
@@ -37,7 +39,7 @@ $blogs = orderSearch();
   <title>blog一覧</title>
 </head>
 
-<?php require_once(__DIR__ . '/header.php'); ?>
+<?php require_once __DIR__ . '/header.php'; ?>
 
 <body>
   <div>

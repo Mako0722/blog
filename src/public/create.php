@@ -8,7 +8,6 @@ $user_id = $_SESSION['formInputs']['userId'];
 $title = filter_input(INPUT_POST, 'title');
 $contents = filter_input(INPUT_POST, 'contents');
 
-
 if (empty($title)) {
     exit('タイトルを入力してください');
 }

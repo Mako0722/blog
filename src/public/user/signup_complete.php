@@ -9,7 +9,6 @@ use App\Domain\ValueObject\InputPassword;
 use App\Usecase\UseCaseInput\SignUpInput;
 use App\Usecase\UseCaseInteractor\SignUpInteractor;
 
-
 $email = filter_input(INPUT_POST, 'email');
 $name = filter_input(INPUT_POST, 'name');
 $password = filter_input(INPUT_POST, 'password');
@@ -42,19 +41,6 @@ try {
     $_SESSION['user']['email'] = $email;
     Redirect::handler('./signup.php');
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // session_start();
 // if (empty($password) || empty($confirmPassword)) $_SESSION['errors'][] = "パスワードを入力してください";

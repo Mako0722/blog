@@ -12,7 +12,6 @@ errorsInit($commenter_name, $comments);
 
 commentPosts($user_id, $blog_id, $commenter_name, $comments);
 
-
 redirect('detail.php?id=' . $blog_id);
 
 ?>

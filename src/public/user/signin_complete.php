@@ -22,10 +22,10 @@ try {
     $useCaseOutput = $useCase->handler();
 
     if (!$useCaseOutput->isSuccess()) {
-            throw new Exception($useCaseOutput->message());
-        }
-        Redirect::handler('../index.php');
-    } catch (Exception $e) {
-        $_SESSION['errors'][] = $e->getMessage();
-        Redirect::handler('./signin.php');
+        throw new Exception($useCaseOutput->message());
+    }
+    Redirect::handler('../index.php');
+} catch (Exception $e) {
+    $_SESSION['errors'][] = $e->getMessage();
+    Redirect::handler('./signin.php');
 }

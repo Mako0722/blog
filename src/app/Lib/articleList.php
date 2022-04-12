@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../Lib/pdoInit.php';
 
-
 function articleList()
 {
     $pdo = pdoInit();
@@ -14,7 +13,6 @@ function articleList()
 
     return $blogs;
 }
-
 
 function orderSearch()
 {

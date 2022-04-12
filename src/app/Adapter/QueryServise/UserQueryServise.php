@@ -22,9 +22,8 @@ final class UserQueryServise
     {
         $userMapper = $this->userDao->findByEmail($email);
 
-
         return $this->notExistsUser($userMapper)
-        ? null
+            ? null
             : new User(
                 new UserId($userMapper['id']),
                 new UserName($userMapper['name']),

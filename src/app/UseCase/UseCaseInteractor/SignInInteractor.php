@@ -9,8 +9,8 @@ use App\Domain\ValueObject\HashedPassword;
 
 final class SignInInteractor
 {
-    const FAILED_MESSAGE = "メールアドレスまたは<br />パスワードが間違っています";
-    const SUCCESS_MESSAGE = "ログインしました";
+    const FAILED_MESSAGE = 'メールアドレスまたは<br />パスワードが間違っています';
+    const SUCCESS_MESSAGE = 'ログインしました';
 
     private $userDao;
     private $input;

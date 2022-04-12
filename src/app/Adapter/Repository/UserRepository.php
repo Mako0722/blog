@@ -8,7 +8,7 @@ use App\Domain\ValueObject\User\NewUser;
 final class UserRepository
 {
     private $userDao;
-    
+
     public function __construct()
     {
         $this->userDao = new UserDao();

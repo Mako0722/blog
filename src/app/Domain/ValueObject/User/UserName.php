@@ -8,11 +8,10 @@ final class UserName
 
     private $value;
 
-
     public function __construct(string $value)
     {
         if ($this->isInvalid($value)) {
-        throw new Exception(self::INVALID_MESSAGE);
+            throw new Exception(self::INVALID_MESSAGE);
         }
 
         $this->value = $value;

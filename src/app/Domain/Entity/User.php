@@ -21,7 +21,7 @@ final class User
         UserName $name,
         Email $email,
         HashedPassword $password
-    ){
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
