@@ -4,7 +4,8 @@ namespace App\Usecase\UseCaseInteractor;
 use App\Usecase\UseCaseInput\SignInInput;
 use App\Usecase\UseCaseOutput\SignInOutput;
 use App\Infrastructure\Dao\UserDao;
-
+use App\Domain\Entity\User;
+use App\Domain\ValueObject\HashedPassword;
 
 final class SignInInteractor
 {

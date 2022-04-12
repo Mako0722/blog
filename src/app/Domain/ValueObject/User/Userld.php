@@ -1,6 +1,5 @@
 <?php
 namespace App\Domain\ValueObject\User;
-
 use Exception;
 
 final class UserId
@@ -22,7 +21,7 @@ final class UserId
     {
         return $this->value;
     }
-    
+
     public function isInvalid(int $value): bool
     {
         return $value < self::MIN_VALUE;

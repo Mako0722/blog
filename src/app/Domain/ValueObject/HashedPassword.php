@@ -1,5 +1,6 @@
 <?php
 namespace App\Domain\ValueObject;
+use FFI\Exception;
 
 final class HashedPassword
 {

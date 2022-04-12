@@ -1,12 +1,11 @@
 <?php
 namespace App\Domain\ValueObject;
+require_once __DIR__ . '/../../../vendor/autoload.php';
+use App\Infrastructure\Redirect\Redirect;
 use Exception;
-
 final class Email
 {
-
     const EMAIL_REGULAR_EXPRESSIONS = "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
-
 
     const INVALID_MESSAGE = 'メールアドレスの形式が正しくありません';
 
