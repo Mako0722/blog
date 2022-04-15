@@ -1,36 +1,25 @@
 <?php
-namespace App\Domain\Entity;
-use App\Domain\ValueObject\User\UserId;
+
+namespace App\Domain\ValueObject\User;
+require_once __DIR__ . '/../../../../vendor/autoload.php';
 use App\Domain\ValueObject\User\UserName;
 use App\Domain\ValueObject\Email;
-use App\Domain\ValueObject\HashedPassword;
-use HashedPassword as GlobalHashedPassword;
+use App\Domain\ValueObject\InputPassword;
 
-final class User
+final class NewUser
 {
-    private $id;
-
     private $name;
-
     private $email;
-
     private $password;
 
     public function __construct(
-        UserId $id,
         UserName $name,
         Email $email,
-        HashedPassword $password
+        InputPassword $password
     ) {
-        $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
-    }
-
-    public function id(): UserId
-    {
-        return $this->id;
     }
 
     public function name(): UserName
@@ -43,7 +32,7 @@ final class User
         return $this->email;
     }
 
-    public function password(): HashedPassword
+    public function password(): InputPassword
     {
         return $this->password;
     }

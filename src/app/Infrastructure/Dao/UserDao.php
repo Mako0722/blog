@@ -37,7 +37,7 @@ final class UserDao extends Dao
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-        return ($user === false) ? null : $user;
+        return $user === false ? null : $user;
     }
 }
 ?>

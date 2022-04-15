@@ -16,7 +16,6 @@ final class SignUpOutput
         }
     }
 
-
     public function isSuccess(): bool
     {
         return $this->isSuccess;

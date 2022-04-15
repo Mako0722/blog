@@ -4,7 +4,6 @@ require_once __DIR__ . '/../app/Lib/detailFunction.php';
 require_once __DIR__ . '/../app/Lib/Session.php';
 $session = Session::getInstance();
 
-
 $id = filter_input(INPUT_GET, 'id');
 
 $blog = detailDisplay($id);
@@ -16,7 +15,6 @@ foreach ($comments as $comment) {
         $my_comments[] = $comment;
     }
 }
-
 ?>
 
 

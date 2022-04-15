@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/../Lib/pdoInit.php';
 
-
-function detailDisplay($id){
+function detailDisplay($id)
+{
     $pdo = pdoInit();
 
     $sql = 'SELECT * FROM blogs WHERE id = :id';
@@ -13,7 +13,8 @@ function detailDisplay($id){
     return $blog;
 }
 
-function commentsDisplay(){
+function commentsDisplay()
+{
     $pdo = pdoInit();
 
     $sql = 'SELECT * FROM comments';

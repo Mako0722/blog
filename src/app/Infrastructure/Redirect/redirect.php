@@ -1,7 +1,11 @@
 <?php
+namespace App\Infrastructure\Redirect;
 
-function redirect(string $redirectPath): void
+final class Redirect
 {
-	header("Location: " . $redirectPath);
-	exit;
+    public static function handler(string $path): void
+    {
+        header('Location:' . $path);
+        exit();
+    }
 }

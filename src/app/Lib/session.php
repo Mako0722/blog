@@ -1,12 +1,11 @@
 <?php
-require_once(__DIR__ . '/SessionKey.php');
+require_once __DIR__ . '/SessionKey.php';
 
 /**
-  * セッションの操作を行うクラス
-  */
+ * セッションの操作を行うクラス
+ */
 final class Session
 {
-
     private static $instance;
 
     private function __construct()
@@ -37,7 +36,7 @@ final class Session
 
     public function popAllErrors(): array
     {
-        $errors = $_SESSION[SessionKey::ERROR_KEY] ?? []; 
+        $errors = $_SESSION[SessionKey::ERROR_KEY] ?? [];
         $errorKey = new SessionKey(SessionKey::ERROR_KEY);
         $this->clear($errorKey);
         return $errors;
@@ -54,25 +53,25 @@ final class Session
     }
 
     public function setFormInputs(SessionKey $sessionKey, $value): void
-	{
-		$_SESSION[$sessionKey->value()] = $value;
-	}
+    {
+        $_SESSION[$sessionKey->value()] = $value;
+    }
 
-	public function getFormInputs(): array
-	{
-		return $_SESSION[SessionKey::FORM_INPUTS_KEY] ?? [];
-	}
+    public function getFormInputs(): array
+    {
+        return $_SESSION[SessionKey::FORM_INPUTS_KEY] ?? [];
+    }
 
-	public function setMessage(SessionKey $sessionKey, $message): void
-	{
-		$_SESSION[$sessionKey->value()] = $message;
-	}
+    public function setMessage(SessionKey $sessionKey, $message): void
+    {
+        $_SESSION[$sessionKey->value()] = $message;
+    }
 
-	public function getMessage(): string
-	{
-		$message = $_SESSION[SessionKey::MESSAGE_KEY] ?? "";
-		$messageKey = new SessionKey(SessionKey::MESSAGE_KEY);
-		$this->clear($messageKey);
-		return $message;
-	}
+    public function getMessage(): string
+    {
+        $message = $_SESSION[SessionKey::MESSAGE_KEY] ?? '';
+        $messageKey = new SessionKey(SessionKey::MESSAGE_KEY);
+        $this->clear($messageKey);
+        return $message;
+    }
 }

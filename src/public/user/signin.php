@@ -4,9 +4,8 @@ session_start();
 $errors = $_SESSION['errors'] ?? [];
 unset($_SESSION['errors']);
 
-$successRegistedMessag = $_SESSION['message'] ?? "";
+$successRegistedMessag = $_SESSION['message'] ?? '';
 unset($_SESSION['message']);
-
 ?>
 
 <!DOCTYPE html>

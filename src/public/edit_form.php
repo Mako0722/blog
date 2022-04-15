@@ -4,7 +4,6 @@ require_once __DIR__ . '/../app/Lib/Session.php';
 $session = Session::getInstance();
 $user_id = $_SESSION['formInputs']['id'];
 
-
 $id = filter_input(INPUT_GET, 'id');
 $blog = editScreen($id);
 ?>

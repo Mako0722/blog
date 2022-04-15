@@ -3,7 +3,6 @@ require_once __DIR__ . '/../app/Lib/myPageFunction.php';
 require_once __DIR__ . '/../app/Lib/Session.php';
 require_once __DIR__ . '/../app/Lib/SessionKey.php';
 
-
 $session = Session::getInstance();
 
 $user_id = $_SESSION['user']['id'];
@@ -12,7 +11,6 @@ if (!isset($user_id)) {
     redirect('./user/signin.php');
 }
 $name = $_SESSION['user']['name'];
-
 
 if (isset($user_id)) {
     //ログインしているとき
@@ -32,8 +30,6 @@ foreach ($blogs as $blog) {
         $my_blogs[] = $blog;
     }
 }
-
-
 ?>
 
 

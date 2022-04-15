@@ -5,12 +5,12 @@ use App\Usecase\UseCaseInput\SignUpInput;
 use App\Usecase\UseCaseOutput\SignUpOutput;
 use App\Infrastructure\Dao\UserDao;
 
-require_once(__DIR__ . '/../UseCaseOutput/SignUpOutput.php');
+require_once __DIR__ . '/../UseCaseOutput/SignUpOutput.php';
 
 final class SignUpInteractor
 {
-    const ALLREADY_EXISTS_MESSAGE = "すでに登録済みのメールアドレスです";
-    const COMPLETED_MESSAGE = "登録が完了しました";
+    const ALLREADY_EXISTS_MESSAGE = 'すでに登録済みのメールアドレスです';
+    const COMPLETED_MESSAGE = '登録が完了しました';
 
     private $useCaseInput;
 
@@ -25,10 +25,14 @@ final class SignUpInteractor
         $user = $userDao->findByMail($this->useCaseInput->email());
 
         if (!is_null($user)) {
-        return new SignUpOutput(false, self::ALLREADY_EXISTS_MESSAGE);
+            return new SignUpOutput(false, self::ALLREADY_EXISTS_MESSAGE);
         }
 
-        $userDao->create($this->useCaseInput->name(), $this->useCaseInput->email(), $this->useCaseInput->password());
+        $userDao->create(
+            $this->useCaseInput->name(),
+            $this->useCaseInput->email(),
+            $this->useCaseInput->password()
+        );
         return new SignUpOutput(true, self::COMPLETED_MESSAGE);
     }
 }
